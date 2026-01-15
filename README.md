@@ -66,3 +66,4 @@ node seeder.js
 ## Deployment
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on deploying to production.
+# purnea-college-website
