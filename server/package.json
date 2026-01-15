@@ -1,0 +1,28 @@
+{
+  "name": "pce-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Purnea College of Engineering Website",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Antigravity",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.1.2",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.11",
+    "xss-clean": "^0.1.4"
+  }
+}
