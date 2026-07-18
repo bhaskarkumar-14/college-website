@@ -28,6 +28,10 @@ const facultySchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    subjects: {
+        type: [String],
+        default: []
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -40,9 +44,9 @@ facultySchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 // Encrypt password using bcrypt
-facultySchema.pre('save', async function (next) {
+facultySchema.pre('save', async function () {
     if (!this.isModified('password')) {
-        return next();
+        return;
     }
 
     const salt = await bcrypt.genSalt(10);

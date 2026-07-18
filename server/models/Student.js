@@ -29,6 +29,10 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    profilePhoto: {
+        type: String,
+        default: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200'
+    },
     biometricLogs: [{
         timestamp: {
             type: Date,
@@ -50,6 +54,21 @@ const studentSchema = new mongoose.Schema({
         attendedLectures: Number,
         lastAttended: Date
     }],
+    examAttempts: [{
+        examId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Exam'
+        },
+        examTitle: String,
+        score: Number,
+        totalQuestions: Number,
+        timeTaken: Number,
+        attemptedCount: Number,
+        submittedAt: {
+            type: Date,
+            default: Date.now
+        }
+    }],
     createdAt: {
         type: Date,
         default: Date.now
@@ -62,9 +81,9 @@ studentSchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 // Encrypt password using bcrypt
-studentSchema.pre('save', async function (next) {
+studentSchema.pre('save', async function () {
     if (!this.isModified('password')) {
-        return next();
+        return;
     }
 
     const salt = await bcrypt.genSalt(10);

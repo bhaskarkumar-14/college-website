@@ -13,7 +13,8 @@ import {
   Settings,
   Cpu,
   Sun,
-  Moon
+  Moon,
+  ArrowUp
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -228,9 +229,9 @@ const Hero = ({ onGetStarted, onAdmissionsClick }) => {
         >
           <div className="animate-float" style={{ background: 'var(--accent)', borderRadius: '32px', padding: '10px', boxShadow: '0 30px 60px -12px rgba(59, 130, 246, 0.3)' }}>
             <img
-              src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800"
+              src="/pce-campus.png"
               alt="PCE Purnia Campus"
-              style={{ width: '100%', borderRadius: '24px', display: 'block' }}
+              style={{ width: '100%', height: '400px', objectFit: 'cover', objectPosition: 'center', borderRadius: '24px', display: 'block' }}
             />
           </div>
           <div className="glass" style={{ position: 'absolute', bottom: '-30px', left: '-10px', right: '-10px', padding: '1.5rem', borderRadius: '24px', maxWidth: '80%', margin: '0 auto' }}>
@@ -247,11 +248,29 @@ function App() {
   const [view, setView] = useState('home');
   const [user, setUser] = useState(null);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress((window.scrollY / totalScroll) * 100);
+      }
+      setShowBackToTop(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
@@ -288,12 +307,142 @@ function App() {
     toggleTheme
   };
 
+  const renderView = () => {
+    switch (view) {
+      case 'home':
+        return (
+          <>
+            <Hero onGetStarted={() => setView('auth')} onAdmissionsClick={() => setView('admissions')} />
+
+            {/* Principal's Note */}
+            <section className="section-padding" style={{ background: 'var(--bg-page)' }}>
+              <div className="container">
+                <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                  <div>
+                    <h3 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Principal's <span className="gradient-text">Message</span></h3>
+                    <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '2rem' }}>
+                      "Our mission is to empower students with technical knowledge and ethical values that will enable them to contribute significantly to the engineering field. At PCE Purnia, we provide a vibrant academic environment supported by modern labs and dedicated faculty."
+                    </p>
+                    <p style={{ fontWeight: 700, fontSize: '1.25rem', color: 'var(--text-primary)' }}>Dr. Manoj Kumar</p>
+                    <p style={{ color: 'var(--text-muted)' }}>Principal, Purnia College of Engineering</p>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <div className="glass" style={{ padding: '1.5rem' }}>
+                      <h5 style={{ color: 'var(--accent)', marginBottom: '0.5rem' }}>Institution Code</h5>
+                      <p style={{ fontWeight: 600, color: 'var(--text-primary)' }}>PCEP (DST Bihar)</p>
+                    </div>
+                    <div className="glass" style={{ padding: '1.5rem' }}>
+                      <h5 style={{ color: 'var(--accent)', marginBottom: '0.5rem' }}>Affiliation</h5>
+                      <p style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Bihar Engineering University, Patna</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Features Grid */}
+            <section className="section-padding" style={{ background: 'var(--bg-section)' }}>
+              <div className="container">
+                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                  <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)' }}>Core Management Features</h3>
+                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Advanced systems for students and faculty tracking</p>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                  <motion.div whileHover={{ y: -10 }} className="glass" style={{ padding: '2.5rem', borderRadius: '20px' }}>
+                    <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent)', width: 'fit-content', padding: '12px', borderRadius: '12px', marginBottom: '1.5rem' }}>
+                      <Fingerprint size={32} />
+                    </div>
+                    <h4 style={{ color: 'var(--text-primary)' }}>Biometric Attendance</h4>
+                    <p style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>High-precision fingerprint and visual verification for daily attendance tracking.</p>
+                  </motion.div>
+
+                  <motion.div whileHover={{ y: -10 }} className="glass" style={{ padding: '2.5rem', borderRadius: '20px' }}>
+                    <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent)', width: 'fit-content', padding: '12px', borderRadius: '12px', marginBottom: '1.5rem' }}>
+                      <BookOpen size={32} />
+                    </div>
+                    <h4 style={{ color: 'var(--text-primary)' }}>Smart Course Tracking</h4>
+                    <p style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>Real-time analytics for B.Tech semester courses and lecture participation.</p>
+                  </motion.div>
+
+                  <motion.div whileHover={{ y: -10 }} className="glass" style={{ padding: '2.5rem', borderRadius: '20px' }}>
+                    <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent)', width: 'fit-content', padding: '12px', borderRadius: '12px', marginBottom: '1.5rem' }}>
+                      <Zap size={32} />
+                    </div>
+                    <h4 style={{ color: 'var(--text-primary)' }}>Instant Notifications</h4>
+                    <p style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>Instant alerts for low attendance, exam schedules, and department circulars.</p>
+                  </motion.div>
+                </div>
+              </div>
+            </section>
+
+            {/* Departments Summary Section */}
+            <section className="section-padding" style={{ background: 'var(--bg-page)' }}>
+              <div className="container">
+                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                  <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)' }}>Official B.Tech Branches</h3>
+                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Comprehensive engineering programs approved by AICTE</p>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                  {[
+                    { name: 'Civil Engineering', icon: <Building2 size={24} />, desc: 'Structural design and infrastructure development.' },
+                    { name: 'Mechanical Engineering', icon: <Settings size={24} />, desc: 'Core systems and advanced manufacturing.' },
+                    { name: 'Electrical Engineering', icon: <Zap size={24} />, desc: 'Power systems and electrical machines.' },
+                    { name: 'Electronics & Comm.', icon: <Zap size={24} />, desc: 'Signal processing and network systems.' },
+                    { name: 'CSE (General)', icon: <BookOpen size={24} />, desc: 'Software engineering and system architecture.' },
+                    { name: 'CSE (AI)', icon: <Cpu size={24} />, desc: 'Artificial intelligence and neural networks.' },
+                    { name: 'Mechatronics', icon: <Settings size={24} />, desc: 'Hybrid mechanical and electrical systems.' }
+                  ].map((branch, idx) => (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ y: -5 }}
+                      className="glass"
+                      style={{ padding: '2rem' }}
+                    >
+                      <div style={{ color: 'var(--accent)', marginBottom: '1rem' }}>{branch.icon}</div>
+                      <h4 style={{ marginBottom: '0.5rem', color: 'var(--text-primary)' }}>{branch.name}</h4>
+                      <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>{branch.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+                <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                  <button className="btn-primary" onClick={commonProps.onAcademicsClick}>View Full Academic Details</button>
+                </div>
+              </div>
+            </section>
+          </>
+        );
+      case 'academics':
+        return <Academics theme={theme} />;
+      case 'facilities':
+        return <Facilities theme={theme} />;
+      case 'admissions':
+        return <Admissions theme={theme} />;
+      case 'student-life':
+        return <StudentLife theme={theme} />;
+      case 'gallery':
+        return <Gallery theme={theme} />;
+      case 'results':
+        return <ResultPortal />;
+      case 'portal':
+        return <AttendancePortal theme={theme} onLogout={handleLogout} />;
+      case 'faculty-portal':
+        return <FacultyDashboard theme={theme} onLogout={handleLogout} />;
+      default:
+        return null;
+    }
+  };
+
   if (view === 'auth') {
     return <Auth onLogin={handleLogin} onBack={() => setView('home')} theme={theme} />;
   }
 
   return (
     <div className="App" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Scroll Progress Bar */}
+      <div style={{ position: 'fixed', top: 0, left: 0, height: '4px', background: 'var(--accent)', width: `${scrollProgress}%`, zIndex: 1001, transition: 'width 0.1s ease-out' }} aria-hidden="true"></div>
+
       {/* Dynamic Background */}
       <div className="blob-bg">
         <div className="blob" style={{ top: '10%', left: '10%', background: 'var(--accent)', width: '400px', height: '400px', animationDelay: '0s' }}></div>
@@ -303,120 +452,53 @@ function App() {
 
       <Navbar {...commonProps} />
 
-      {view === 'home' && (
-        <>
-          <Hero onGetStarted={() => setView('auth')} onAdmissionsClick={() => setView('admissions')} />
-
-          {/* Principal's Note */}
-          <section className="section-padding" style={{ background: 'var(--bg-page)' }}>
-            <div className="container">
-              <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '4rem', alignItems: 'center' }}>
-                <div>
-                  <h3 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Principal's <span className="gradient-text">Message</span></h3>
-                  <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-main)', fontStyle: 'italic', marginBottom: '2rem' }}>
-                    "Our mission is to empower students with technical knowledge and ethical values that will enable them to contribute significantly to the engineering field. At PCE Purnia, we provide a vibrant academic environment supported by modern labs and dedicated faculty."
-                  </p>
-                  <p style={{ fontWeight: 700, fontSize: '1.25rem', color: 'var(--text-primary)' }}>Dr. Manoj Kumar</p>
-                  <p style={{ color: 'var(--text-muted)' }}>Principal, Purnia College of Engineering</p>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div className="glass" style={{ padding: '1.5rem' }}>
-                    <h5 style={{ color: 'var(--accent)', marginBottom: '0.5rem' }}>Institution Code</h5>
-                    <p style={{ fontWeight: 600, color: 'var(--text-primary)' }}>PCEP (DST Bihar)</p>
-                  </div>
-                  <div className="glass" style={{ padding: '1.5rem' }}>
-                    <h5 style={{ color: 'var(--accent)', marginBottom: '0.5rem' }}>Affiliation</h5>
-                    <p style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Bihar Engineering University, Patna</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Features Grid */}
-          <section className="section-padding" style={{ background: 'var(--bg-section)' }}>
-            <div className="container">
-              <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)' }}>Core Management Features</h3>
-                <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Advanced systems for students and faculty tracking</p>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                <motion.div whileHover={{ y: -10 }} className="glass" style={{ padding: '2.5rem', borderRadius: '20px' }}>
-                  <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent)', width: 'fit-content', padding: '12px', borderRadius: '12px', marginBottom: '1.5rem' }}>
-                    <Fingerprint size={32} />
-                  </div>
-                  <h4 style={{ color: 'var(--text-primary)' }}>Biometric Attendance</h4>
-                  <p style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>High-precision fingerprint and visual verification for daily attendance tracking.</p>
-                </motion.div>
-
-                <motion.div whileHover={{ y: -10 }} className="glass" style={{ padding: '2.5rem', borderRadius: '20px' }}>
-                  <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent)', width: 'fit-content', padding: '12px', borderRadius: '12px', marginBottom: '1.5rem' }}>
-                    <BookOpen size={32} />
-                  </div>
-                  <h4 style={{ color: 'var(--text-primary)' }}>Smart Course Tracking</h4>
-                  <p style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>Real-time analytics for B.Tech semester courses and lecture participation.</p>
-                </motion.div>
-
-                <motion.div whileHover={{ y: -10 }} className="glass" style={{ padding: '2.5rem', borderRadius: '20px' }}>
-                  <div style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent)', width: 'fit-content', padding: '12px', borderRadius: '12px', marginBottom: '1.5rem' }}>
-                    <Zap size={32} />
-                  </div>
-                  <h4 style={{ color: 'var(--text-primary)' }}>Instant Notifications</h4>
-                  <p style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>Instant alerts for low attendance, exam schedules, and department circulars.</p>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-
-          {/* Departments Summary Section */}
-          <section className="section-padding" style={{ background: 'var(--bg-page)' }}>
-            <div className="container">
-              <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                <h3 style={{ fontSize: '2.5rem', color: 'var(--text-primary)' }}>Official B.Tech Branches</h3>
-                <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Comprehensive engineering programs approved by AICTE</p>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-                {[
-                  { name: 'Civil Engineering', icon: <Building2 size={24} />, desc: 'Structural design and infrastructure development.' },
-                  { name: 'Mechanical Engineering', icon: <Settings size={24} />, desc: 'Core systems and advanced manufacturing.' },
-                  { name: 'Electrical Engineering', icon: <Zap size={24} />, desc: 'Power systems and electrical machines.' },
-                  { name: 'Electronics & Comm.', icon: <Zap size={24} />, desc: 'Signal processing and network systems.' },
-                  { name: 'CSE (General)', icon: <BookOpen size={24} />, desc: 'Software engineering and system architecture.' },
-                  { name: 'CSE (AI)', icon: <Cpu size={24} />, desc: 'Artificial intelligence and neural networks.' },
-                  { name: 'Mechatronics', icon: <Settings size={24} />, desc: 'Hybrid mechanical and electrical systems.' }
-                ].map((branch, idx) => (
-                  <motion.div
-                    key={idx}
-                    whileHover={{ y: -5 }}
-                    className="glass"
-                    style={{ padding: '2rem' }}
-                  >
-                    <div style={{ color: 'var(--accent)', marginBottom: '1rem' }}>{branch.icon}</div>
-                    <h4 style={{ marginBottom: '0.5rem', color: 'var(--text-primary)' }}>{branch.name}</h4>
-                    <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>{branch.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-              <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-                <button className="btn-primary" onClick={commonProps.onAcademicsClick}>View Full Academic Details</button>
-              </div>
-            </div>
-          </section>
-        </>
-      )}
-
-      {view === 'academics' && <Academics theme={theme} />}
-      {view === 'facilities' && <Facilities theme={theme} />}
-      {view === 'admissions' && <Admissions theme={theme} />}
-      {view === 'student-life' && <StudentLife theme={theme} />}
-      {view === 'gallery' && <Gallery theme={theme} />}
-      {view === 'results' && <ResultPortal />}
-      {view === 'portal' && <AttendancePortal theme={theme} onLogout={handleLogout} />}
-      {view === 'faculty-portal' && <FacultyDashboard theme={theme} onLogout={handleLogout} />}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={view}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -15 }}
+          transition={{ duration: 0.25, ease: 'easeInOut' }}
+        >
+          {renderView()}
+        </motion.div>
+      </AnimatePresence>
 
       <Footer />
+
+      {/* Floating Back to Top Button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            style={{
+              position: 'fixed',
+              bottom: '2rem',
+              right: '2rem',
+              background: 'var(--accent)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: 'var(--shadow-lg)',
+              cursor: 'pointer',
+              zIndex: 999
+            }}
+            aria-label="Back to top"
+            whileHover={{ scale: 1.1, translateY: -3 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ArrowUp size={24} />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

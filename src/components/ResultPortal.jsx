@@ -62,6 +62,8 @@ const ResultPortal = () => {
                             placeholder="Enter Roll Number (e.g., PEC/CSE/22/045)"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
+                            aria-label="Student Roll Number"
+                            id="rollNumberInput"
                             style={{
                                 flex: 1,
                                 background: 'transparent',
@@ -75,6 +77,7 @@ const ResultPortal = () => {
                         <button
                             type="submit"
                             disabled={loading}
+                            aria-describedby="rollNumberInput"
                             style={{
                                 background: 'var(--accent)',
                                 color: 'white',
@@ -94,6 +97,7 @@ const ResultPortal = () => {
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
+                            role="alert"
                             style={{ marginTop: '1rem', color: '#f43f5e', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
                         >
                             <AlertCircle size={18} /> {error}

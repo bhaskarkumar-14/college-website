@@ -27,13 +27,16 @@ const CustomTooltip = ({ active, payload, label }) => {
 const AttendanceChart = ({ data }) => {
     // Transform data for chart if not already
     // data struct: { name, attended, total, color }
-    const chartData = data.map(d => ({
-        name: d.name.split(' ')[0], // Short name
-        fullName: d.name,
-        percentage: d.total > 0 ? Math.round((d.attended / d.total) * 100) : 0,
-        attended: d.attended,
-        total: d.total
-    }));
+    const chartData = data.map(d => {
+        const nameVal = d.name || d.subjectName || 'Subject';
+        return {
+            name: nameVal.split(' ')[0], // Short name
+            fullName: nameVal,
+            percentage: d.total > 0 ? Math.round((d.attended / d.total) * 100) : 0,
+            attended: d.attended || 0,
+            total: d.total || 0
+        };
+    });
 
     return (
         <div className="glass" style={{ padding: '2rem', borderRadius: '32px', height: '400px', display: 'flex', flexDirection: 'column' }}>

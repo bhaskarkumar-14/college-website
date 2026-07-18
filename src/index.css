@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
+*:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 3px;
+}
+
 :root {
   /* Color Palette - Premium Academic */
   --primary: #1e293b;
@@ -16,31 +25,33 @@
   /* Light Mode (Default) */
   --bg-page: #ffffff;
   --bg-section: #f8fafc;
-  --bg-card: rgba(255, 255, 255, 0.7);
-  --bg-navbar: rgba(255, 255, 255, 0.8);
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-navbar: rgba(255, 255, 255, 0.85);
   --text-main: #0f172a;
   --text-primary: #1e293b;
   --text-muted: #64748b;
   --border-color: rgba(226, 232, 240, 0.8);
-  --glass-stroke: rgba(255, 255, 255, 0.5);
+  --glass-stroke: rgba(255, 255, 255, 0.6);
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
 }
 
 [data-theme='dark'] {
-  --bg-page: #0f172a;
-  --bg-section: #1e293b;
-  --bg-card: rgba(30, 41, 59, 0.7);
-  --bg-navbar: rgba(15, 23, 42, 0.8);
-  --text-main: #f8fafc;
-  --text-primary: #f1f5f9;
-  --text-muted: #94a3b8;
-  --border-color: rgba(51, 65, 85, 0.8);
-  --glass-stroke: rgba(255, 255, 255, 0.1);
+  --bg-page: #0b0f19;
+  --bg-section: #111827;
+  --bg-card: rgba(17, 24, 39, 0.75);
+  --bg-navbar: rgba(11, 15, 25, 0.85);
+  --text-main: #f3f4f6;
+  --text-primary: #f9fafb;
+  --text-muted: #9ca3af;
+  --border-color: rgba(31, 41, 55, 0.8);
+  --glass-stroke: rgba(255, 255, 255, 0.08);
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4);
 }
 
 * {
@@ -317,5 +328,74 @@ h6 {
 
   .mobile-menu-btn:active {
     background: var(--bg-section);
+  }
+}
+
+/* Dashboard Grids & Header Responsiveness */
+.dashboard-layout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 2.5rem;
+}
+
+.faculty-layout-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+}
+
+.dashboard-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .dashboard-layout-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .faculty-layout-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-header-flex {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+}
+
+/* Print styles for Clean Attendance Reports */
+#print-report-root {
+  display: none;
+}
+
+@media print {
+  #root, .app-root, header, footer, nav, button, .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: 'Inter', sans-serif !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #print-report-root {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 30px !important;
+    box-shadow: none !important;
   }
 }

@@ -13,81 +13,87 @@ const generateToken = (id) => {
 const BRANCH_SESSION_SUBJECTS = {
     '2022-26': { // 7th Semester
         'CSE': [
-            { name: 'Adv. Computer Architecture', total: 42, attended: 35 },
-            { name: 'Network Security', total: 38, attended: 32 },
             { name: 'Biology for Engineers', total: 30, attended: 28 },
-            { name: 'Cloud Computing', total: 40, attended: 36 },
-            { name: 'IoT', total: 45, attended: 39 }
+            { name: 'Advanced Computer Architecture', total: 42, attended: 35 },
+            { name: 'Cyber Security', total: 38, attended: 32 },
+            { name: 'Virtual Reality', total: 40, attended: 36 },
+            { name: 'Induction Program', total: 45, attended: 39 }
         ],
         'ECE': [
             { name: 'Wireless Communication', total: 45, attended: 40 },
-            { name: 'VLSI Technology', total: 42, attended: 28 },
-            { name: 'Biology for Engineers', total: 30, attended: 25 },
-            { name: 'Optical Fibre Comm', total: 38, attended: 34 },
-            { name: 'Info Theory & Coding', total: 40, attended: 37 }
+            { name: 'Business Analytics', total: 42, attended: 28 },
+            { name: 'Cost Management', total: 30, attended: 25 },
+            { name: 'Graduate Employability Skills', total: 38, attended: 34 },
+            { name: 'VLSI Technology', total: 40, attended: 37 }
         ],
         'CE': [
-            { name: 'Environmental Engg II', total: 44, attended: 41 },
-            { name: 'Foundation Engg', total: 40, attended: 30 },
-            { name: 'Biology for Engineers', total: 28, attended: 20 },
-            { name: 'Metro Systems', total: 36, attended: 34 },
-            { name: 'Pavement Design', total: 42, attended: 39 }
+            { name: 'Graduate Employability Skills', total: 44, attended: 41 },
+            { name: 'Professional Practice, Law & Ethics', total: 40, attended: 30 },
+            { name: 'Repair & Rehab of Structures', total: 28, attended: 20 },
+            { name: 'Concrete Materials', total: 36, attended: 34 },
+            { name: 'Cyber Security', total: 42, attended: 39 }
         ],
         'ME': [
-            { name: 'IC Engines', total: 46, attended: 42 },
-            { name: 'Automation in Mfg', total: 40, attended: 35 },
-            { name: 'Biology for Engineers', total: 32, attended: 29 },
-            { name: 'Power Plant Engg', total: 44, attended: 38 },
+            { name: 'Internal Combustion Engines', total: 46, attended: 42 },
+            { name: 'Induction Program', total: 40, attended: 35 },
+            { name: 'Renewable Energy Systems', total: 32, attended: 29 },
+            { name: 'Automation in Manufacturing', total: 44, attended: 38 },
             { name: 'Operations Research', total: 38, attended: 30 }
         ],
         'EE': [
-            { name: 'Electrical Drives', total: 45, attended: 41 },
-            { name: 'Power System III', total: 42, attended: 33 },
-            { name: 'Biology for Engineers', total: 30, attended: 27 },
-            { name: 'High Voltage Engg', total: 38, attended: 35 },
-            { name: 'Digital Control Sys', total: 40, attended: 38 }
+            { name: 'Power System Protection', total: 45, attended: 41 },
+            { name: 'Human Values & Ethics', total: 42, attended: 33 },
+            { name: 'Cyber Security', total: 30, attended: 27 },
+            { name: 'Virtual Reality', total: 38, attended: 35 },
+            { name: 'Electrical Drives', total: 40, attended: 38 }
         ],
         'default': [
             { name: 'Biology for Engineers', total: 30, attended: 25 },
-            { name: 'Open Elective I', total: 40, attended: 35 }
+            { name: 'Cyber Security', total: 40, attended: 35 }
         ]
     },
     '2023-27': { // 5th Semester
         'CSE': [
-            { name: 'DBMS', total: 45, attended: 40 },
-            { name: 'Formal Language & Automata', total: 42, attended: 38 },
-            { name: 'Computer Networks', total: 40, attended: 35 },
-            { name: 'Software Engineering', total: 38, attended: 30 },
-            { name: 'Microprocessors', total: 36, attended: 32 },
-            { name: 'Python Programming', total: 30, attended: 28 }
+            { name: 'Professional Skill Development', total: 45, attended: 40 },
+            { name: 'Artificial Intelligence', total: 42, attended: 38 },
+            { name: 'Database Management Systems', total: 40, attended: 35 },
+            { name: 'Formal Language & Automata Theory', total: 38, attended: 30 },
+            { name: 'Software Engineering', total: 36, attended: 32 },
+            { name: 'Seminar', total: 30, attended: 28 }
         ],
         'ECE': [
             { name: 'Digital Signal Processing', total: 45, attended: 40 },
-            { name: 'Microprocessors & Microcontrollers', total: 42, attended: 38 },
-            { name: 'Control Systems', total: 40, attended: 35 },
-            { name: 'Electromagnetic Waves', total: 36, attended: 32 },
-            { name: 'Antenna & Wave Prop', total: 38, attended: 33 }
+            { name: 'Microprocessors and Microcontrollers', total: 42, attended: 38 },
+            { name: 'Linear Control Systems', total: 40, attended: 35 },
+            { name: 'Linear Integrated Circuits and Applications', total: 36, attended: 32 },
+            { name: 'Probability Theory and Stochastic Processes', total: 38, attended: 33 },
+            { name: 'Computer Networks and Security', total: 44, attended: 41 },
+            { name: 'Environmental Science', total: 30, attended: 28 },
+            { name: 'Constitution of India', total: 20, attended: 18 }
         ],
         'ME': [
-            { name: 'Heat & Mass Transfer', total: 45, attended: 40 },
-            { name: 'Theory of Machines', total: 42, attended: 38 },
-            { name: 'Design of Machine Elements', total: 40, attended: 35 },
-            { name: 'Manufacturing Processes', total: 38, attended: 30 },
-            { name: 'IC Engines', total: 36, attended: 32 }
+            { name: 'Heat Transfer', total: 45, attended: 40 },
+            { name: 'Fluid Machinery', total: 42, attended: 38 },
+            { name: 'Manufacturing Processes', total: 40, attended: 35 },
+            { name: 'Kinematics of Machine', total: 38, attended: 30 },
+            { name: 'Constitution of India', total: 36, attended: 32 },
+            { name: 'Graduate Employability Skills', total: 30, attended: 28 }
         ],
         'CE': [
-            { name: 'Geotechnical Engg I', total: 45, attended: 40 },
-            { name: 'Structural Analysis', total: 42, attended: 38 },
-            { name: 'Design of Concrete Structures', total: 40, attended: 35 },
-            { name: 'Environmental Engg', total: 38, attended: 30 },
-            { name: 'Transportation Engg', total: 36, attended: 32 }
+            { name: 'Mechanics of Materials', total: 45, attended: 40 },
+            { name: 'Hydraulic Engineering', total: 42, attended: 38 },
+            { name: 'Analysis and Design of Concrete Structure', total: 40, attended: 35 },
+            { name: 'Geotechnical Engineering -I', total: 38, attended: 30 },
+            { name: 'Hydrology & Water Resources Engineering', total: 36, attended: 32 },
+            { name: 'Environmental Engineering -I', total: 34, attended: 30 },
+            { name: 'Transportation Engineering', total: 30, attended: 28 }
         ],
         'EE': [
-            { name: 'Power Systems I', total: 45, attended: 40 },
+            { name: 'Power Systems-I', total: 45, attended: 40 },
             { name: 'Control Systems', total: 42, attended: 38 },
             { name: 'Microprocessors', total: 40, attended: 35 },
-            { name: 'Electrical Machines II', total: 38, attended: 30 },
-            { name: 'Power Electronics', total: 36, attended: 32 }
+            { name: 'Power Electronics', total: 38, attended: 30 },
+            { name: 'Program Elective - 1', total: 36, attended: 32 }
         ],
         'default': [
             { name: 'Constitution of India', total: 20, attended: 18 }
@@ -95,52 +101,95 @@ const BRANCH_SESSION_SUBJECTS = {
     },
     '2024-28': { // 3rd Semester
         'CSE': [
-            { name: 'Data Structures & Algo', total: 50, attended: 45 },
-            { name: 'Object Oriented Prog (C++)', total: 48, attended: 42 },
-            { name: 'Digital Electronics', total: 45, attended: 40 },
-            { name: 'Analog Electronic Circuits', total: 40, attended: 35 },
-            { name: 'Mathematics III', total: 40, attended: 35 }
+            { name: 'Digital Electronics', total: 50, attended: 45 },
+            { name: 'Data Structure and Algorithms', total: 48, attended: 42 },
+            { name: 'OOP using JAVA', total: 45, attended: 40 },
+            { name: 'Discrete Mathematics', total: 40, attended: 35 },
+            { name: 'Operating System', total: 40, attended: 35 },
+            { name: 'Universal Human Values', total: 30, attended: 28 },
+            { name: 'Indian Knowledge System', total: 20, attended: 18 }
         ],
         'ECE': [
-            { name: 'Network Theory', total: 48, attended: 42 },
-            { name: 'Signals & Systems', total: 45, attended: 40 },
-            { name: 'Digital Electronics', total: 45, attended: 38 },
-            { name: 'Electronic Devices', total: 42, attended: 39 },
-            { name: 'Mathematics III', total: 40, attended: 35 }
+            { name: 'Electronic Devices and Circuit Theory', total: 48, attended: 42 },
+            { name: 'Object Oriented Programming', total: 45, attended: 40 },
+            { name: 'Network Theory', total: 45, attended: 38 },
+            { name: 'Signal & System', total: 42, attended: 39 },
+            { name: 'Engineering Mathematics-III', total: 40, attended: 35 },
+            { name: 'Universal Human Values', total: 30, attended: 28 },
+            { name: 'Indian Knowledge System', total: 20, attended: 18 }
         ],
         'ME': [
-            { name: 'Thermodynamics', total: 48, attended: 42 },
-            { name: 'Strength of Materials', total: 45, attended: 40 },
-            { name: 'Engineering Materials', total: 45, attended: 38 },
-            { name: 'Kinematics of Machinery', total: 42, attended: 39 },
-            { name: 'Mathematics III', total: 40, attended: 35 }
+            { name: 'Engineering Mechanics', total: 48, attended: 42 },
+            { name: 'Material Science and Engineering', total: 45, attended: 40 },
+            { name: 'Engineering Mathematics-III', total: 45, attended: 38 },
+            { name: 'Thermodynamics', total: 42, attended: 39 },
+            { name: 'Basic Electronics Engineering', total: 40, attended: 35 },
+            { name: 'Universal Human Values', total: 30, attended: 28 },
+            { name: 'Indian Knowledge System', total: 20, attended: 18 }
         ],
         'CE': [
-            { name: 'Surveying & Geomatics', total: 48, attended: 42 },
-            { name: 'Fluid Mechanics', total: 45, attended: 40 },
-            { name: 'Basic Electronics', total: 45, attended: 38 },
-            { name: 'Engineering Geology', total: 42, attended: 39 },
-            { name: 'Mathematics III', total: 40, attended: 35 }
+            { name: 'Solid Mechanics', total: 48, attended: 42 },
+            { name: 'Engineering Mathematics-III', total: 45, attended: 40 },
+            { name: 'Universal Human Values', total: 45, attended: 38 },
+            { name: 'Surveying and Geomatics', total: 42, attended: 39 },
+            { name: 'Fluid Mechanics', total: 40, attended: 35 },
+            { name: 'Materials, Testing & Evaluation', total: 30, attended: 28 },
+            { name: 'Indian Knowledge System', total: 20, attended: 18 }
         ],
         'EE': [
-            { name: 'Circuit Analysis', total: 48, attended: 42 },
-            { name: 'Electrical Machines I', total: 45, attended: 40 },
-            { name: 'Digital Electronics', total: 45, attended: 38 },
-            { name: 'Analog Electronics', total: 42, attended: 39 },
-            { name: 'Mathematics III', total: 40, attended: 35 }
+            { name: 'Electrical Circuit Analysis', total: 48, attended: 42 },
+            { name: 'Analog Electronics', total: 45, attended: 40 },
+            { name: 'Electrical Machine-I', total: 45, attended: 38 },
+            { name: 'Engineering Mathematics-III', total: 42, attended: 39 },
+            { name: 'Engineering Mechanics', total: 40, attended: 35 },
+            { name: 'Universal Human Values', total: 30, attended: 28 },
+            { name: 'Indian Knowledge System', total: 20, attended: 18 }
         ],
         'default': [
-            { name: 'Mathematics III', total: 40, attended: 35 },
-            { name: 'Technical Writing', total: 30, attended: 28 }
+            { name: 'Universal Human Values', total: 30, attended: 28 },
+            { name: 'Indian Knowledge System', total: 20, attended: 18 }
         ]
     },
-    '2025-29': { // 1st Semester (Common)
-        'default': [
-            { name: 'Engineering Mathematics I', total: 45, attended: 42 },
+    '2025-29': { // 1st Semester
+        'CSE': [
+            { name: 'Engineering Mathematics-I', total: 45, attended: 42 },
             { name: 'Engineering Physics', total: 40, attended: 38 },
-            { name: 'Basic Electrical Engg', total: 42, attended: 39 },
-            { name: 'Engineering Graphics', total: 38, attended: 35 },
-            { name: 'Environmental Studies', total: 30, attended: 28 }
+            { name: 'Programming for Problem Solving', total: 42, attended: 39 },
+            { name: 'IT Workshop', total: 38, attended: 35 },
+            { name: 'Basic Electronics Engineering', total: 30, attended: 28 }
+        ],
+        'ECE': [
+            { name: 'Engineering Mathematics-I', total: 45, attended: 42 },
+            { name: 'Engineering Physics', total: 40, attended: 38 },
+            { name: 'Programming for Problem Solving', total: 42, attended: 39 },
+            { name: 'Basic Electrical Engineering', total: 38, attended: 35 },
+            { name: 'Workshop Practices', total: 30, attended: 28 }
+        ],
+        'EE': [
+            { name: 'Engineering Mathematics-I', total: 45, attended: 42 },
+            { name: 'Engineering Physics', total: 40, attended: 38 },
+            { name: 'Programming for Problem Solving', total: 42, attended: 39 },
+            { name: 'Basic Electrical Engineering', total: 38, attended: 35 },
+            { name: 'Workshop Practices', total: 30, attended: 28 }
+        ],
+        'ME': [
+            { name: 'Engineering Chemistry', total: 45, attended: 42 },
+            { name: 'Engineering Mathematics-I', total: 40, attended: 38 },
+            { name: 'Communicative English', total: 42, attended: 39 },
+            { name: 'Engineering Graphics and Design', total: 38, attended: 35 },
+            { name: 'Basic Electrical Engineering', total: 30, attended: 28 }
+        ],
+        'CE': [
+            { name: 'Engineering Chemistry', total: 45, attended: 42 },
+            { name: 'Engineering Mathematics-I', total: 40, attended: 38 },
+            { name: 'Communicative English', total: 42, attended: 39 },
+            { name: 'Engineering Graphics and Design', total: 38, attended: 35 },
+            { name: 'Engineering Mechanics', total: 30, attended: 28 }
+        ],
+        'default': [
+            { name: 'Engineering Mathematics-I', total: 45, attended: 42 },
+            { name: 'Engineering Physics', total: 40, attended: 38 },
+            { name: 'Programming for Problem Solving', total: 42, attended: 39 }
         ]
     }
 };
@@ -243,9 +292,11 @@ export const getStudentDashboard = async (req, res) => {
                     studentId: student.studentId,
                     branch: student.branch,
                     email: student.email,
+                    profilePhoto: student.profilePhoto,
                 },
                 biometricLogs: student.biometricLogs,
                 academicAttendance: student.academicAttendance,
+                examAttempts: student.examAttempts || [],
                 announcements: announcements
             });
         } else {
@@ -257,6 +308,10 @@ export const getStudentDashboard = async (req, res) => {
 };
 
 export const markBiometricAttendance = async (req, res) => {
+    return res.status(403).json({ message: "Access denied. Student self-attendance marking is disabled." });
+};
+
+const old_markBiometricAttendance = async (req, res) => {
     const { location, deviceId } = req.body;
 
     try {
