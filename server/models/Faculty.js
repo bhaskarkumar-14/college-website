@@ -49,7 +49,8 @@ facultySchema.pre('save', async function () {
         return;
     }
 
-    const salt = await bcrypt.genSalt(10);
+    const saltRounds = process.env.NODE_ENV === 'development' ? 6 : 10;
+    const salt = await bcrypt.genSalt(saltRounds);
     this.password = await bcrypt.hash(this.password, salt);
 });
 
